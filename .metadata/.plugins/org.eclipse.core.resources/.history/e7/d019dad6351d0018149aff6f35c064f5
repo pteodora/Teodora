@@ -1,0 +1,15 @@
+package pomodoro.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService { //UDS - which User is logged in
+	/*
+	@Autowired
+	private UserRepo userRepo;
+	
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return userRepo.findOneByUser(username);
+	}
+*/
+}

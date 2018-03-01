@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Task")
 public class Task {
-
+    
     @Id
     @GeneratedValue
     @Column(name = "taskID", unique = true, nullable = false)

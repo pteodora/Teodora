@@ -1,0 +1,21 @@
+package pomodoro.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Team")
+public class Team {
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "teamID", unique = true, nullable = false)
+	private String teamID;
+	
+	@Column(name = "teamName", unique = false, nullable = false)
+	private String teamName;
+
+}

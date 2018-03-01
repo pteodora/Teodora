@@ -1,0 +1,9 @@
+package pomodoro.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@RequestMapping("/teams")
+public class TeamController {
+
+}

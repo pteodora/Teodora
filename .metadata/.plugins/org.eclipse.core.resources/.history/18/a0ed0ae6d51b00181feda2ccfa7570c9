@@ -1,0 +1,8 @@
+package pomodoro.service;
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+@Service("UserDetailsService")
+public class UserService implements UserDetailsService {
+	
+}

@@ -1,0 +1,6 @@
+package pomodoro.service;
+
+@Service("UserDetailsService")
+public class UserService implements UserDetailsService {
+
+}

@@ -1,0 +1,6 @@
+package execom.pomodoro.entity;
+
+
+public class User {
+
+}

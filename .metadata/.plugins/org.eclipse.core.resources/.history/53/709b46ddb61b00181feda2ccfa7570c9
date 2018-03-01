@@ -1,0 +1,33 @@
+package pomodoro.entity;
+
+import java.util.HashSet;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import static javax.persistence.FetchType.LAZY;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.mapping.Set;
+
+@Entity
+@Table(name = "Pomodoro")
+public class Pomodoro {
+
+	@Id
+	@GeneratedValue
+	@Column(name = "pomID", unique = true, nullable = false)
+	private String pomID;
+	
+	@Column(name = "pName", unique = false, nullable = false)
+	private String pName;
+
+	@OneToMany(mappedBy = "pomID")
+	Set<User> users = new HashSet<User>();
+	
+}

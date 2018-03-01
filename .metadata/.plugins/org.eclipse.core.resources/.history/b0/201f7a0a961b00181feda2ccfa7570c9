@@ -1,0 +1,7 @@
+package execom.pomodoro.entity;
+import static javax.persistence.GenerationType.IDENTITY;
+
+@Entity
+public class User {
+
+}

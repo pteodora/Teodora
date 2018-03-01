@@ -1,0 +1,25 @@
+1519719157967	Delete element
+1519722923770	Rename package 'rs.pomodoro.entity'
+1519738411542	Rename package 'repository'
+1519738587936	Delete element
+1519738600137	Delete elements
+1519738643023	Rename type 'PomodorioRepo'
+1519740527289	Rename package 'pomodoro.services'
+1519746613652	Delete element
+1519746632774	Delete element
+1519804662043	Delete element
+1519804719777	Delete element
+1519805171127	Rename type 'PomodoroRepo'
+1519805175460	Rename type 'TaskRepo'
+1519805179890	Rename type 'TeamRepo'
+1519805183761	Rename type 'UserRepo'
+1519809022889	Delete element
+1519809730135	Move file
+1519820834911	Delete element
+1519822184105	Move file
+1519825324191	Rename type 'App'
+1519825331744	Rename resource 'app.properties'
+1519828947629	Copy file
+1519828955047	Delete element
+1519829009703	Copy file
+1519829013342	Delete element

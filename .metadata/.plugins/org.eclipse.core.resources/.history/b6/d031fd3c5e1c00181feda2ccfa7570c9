@@ -1,0 +1,9 @@
+package pomodoro.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import pomodoro.entity.Pomodoro;
+
+public interface PomodoroRepo extends JpaRepository<Pomodoro, String> {
+
+}

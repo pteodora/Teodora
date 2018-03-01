@@ -1,0 +1,36 @@
+package pomodoro.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "User")
+public class User {
+	
+	@Id
+	@Column(name = "email", unique = true, nullable = false)
+	private String email;
+	
+	@Column(name = "fName", unique = false, nullable = false)
+	private String fName;
+	
+	@Column(name = "lName", unique = false, nullable = false)
+	private String lName;
+	
+	@ManyToOne
+	@JoinColumn(name = "pomID", referencedColumnName = "pomID", nullable = false)
+	private Pomodoro pomodoro;
+	
+	@ManyToMany
+	@JoinTable(name = "UserTeam", joinColumns = {@JoinColumn(name = "userID"), inverseColumn = {@JoinColumn(name = "teamID")})
+	Set<Team> teams = new HashSet<>();
+	}
+	
+	
+}

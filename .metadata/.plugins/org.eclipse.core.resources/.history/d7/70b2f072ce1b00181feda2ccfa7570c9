@@ -1,0 +1,31 @@
+package pomodoro.entity;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import static javax.persistence.FetchType.LAZY;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "Pomodoro")
+public class Pomodoro {
+
+	@Id
+	@GeneratedValue
+	@Column(name = "pomID", unique = true, nullable = false)
+	private String pomID;
+	
+	@Column(name = "pName", unique = false, nullable = false)
+	private String pName;
+
+	@OneToMany(mappedBy = "pomID")
+	private Set<User> users;
+	
+}

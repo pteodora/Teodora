@@ -1,0 +1,5 @@
+package pomodoro.entity;
+
+public class Pomodoro {
+
+}

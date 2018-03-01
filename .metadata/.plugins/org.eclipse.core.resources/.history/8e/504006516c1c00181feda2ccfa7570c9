@@ -1,0 +1,18 @@
+package pomodoro.controller;
+
+import java.awt.List;
+
+import pomodoro.entity.User;
+import pomodoro.repository.UserRepository;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+	
+	UserRepository ur;
+	public List<User> findAll();
+	
+}

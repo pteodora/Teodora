@@ -1,0 +1,19 @@
+package pomodoro.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import pomodoro.repository.UserRepository;
+
+public class UserService /*implements UserDetailsService*/ { //UDS - which User is logged in
+	/*
+	@Autowired
+	private UserRepo userRepo;
+	
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return userRepo.findOneByUser(username);
+	}
+*/
+}

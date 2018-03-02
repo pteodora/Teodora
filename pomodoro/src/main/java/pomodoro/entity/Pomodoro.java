@@ -1,15 +1,12 @@
 package pomodoro.entity;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-//import static javax.persistence.FetchType.LAZY;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -17,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "Pomodoro")
 public class Pomodoro {
 
-    @Id
+    @Id 
     @GeneratedValue
     @Column(name = "pomID", unique = true, nullable = false)
     private int pomID;
@@ -25,18 +22,24 @@ public class Pomodoro {
     @Column(name = "pName", unique = false, nullable = false)
     private String pName;
 
-    @OneToMany(mappedBy = "pomID")
-    private Set<User> users;
+    @ManyToOne
+    @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
+    private User user;
+    
+    @ManyToOne
+    @JoinColumn(name = "taskID", referencedColumnName = "taskID", nullable = false)
+    private Task tasks;
     
     public Pomodoro() {
         super();
     }
 
-    public Pomodoro(int pomID, String pName, Set<User> users) {
+    public Pomodoro(int pomID, String pName, User user, Task tasks) {
         super();
         this.pomID = pomID;
         this.pName = pName;
-        this.users = users;
+        this.user = user;
+        this.tasks = tasks;
     }
 
     public int getPomID() {
@@ -55,11 +58,19 @@ public class Pomodoro {
         this.pName = pName;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }	
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Task getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Task tasks) {
+        this.tasks = tasks;
+    }
 }

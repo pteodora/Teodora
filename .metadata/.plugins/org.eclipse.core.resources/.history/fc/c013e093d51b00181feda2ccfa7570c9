@@ -1,6 +1,0 @@
-package pomodoro.service;
-
-@Service("userDetailsService")
-public class UserService implements UserDetailsService {
-
-}

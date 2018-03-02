@@ -1,5 +1,0 @@
-package pomodoro.repository;
-
-public interface User {
-
-}

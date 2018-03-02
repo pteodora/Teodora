@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,17 +26,16 @@ public class User {
     @Column(name = "lName", unique = false, nullable = false)
     private String lName;
     
-    private Set<Team> teams;
+    @OneToMany(mappedBy = "user")
+    private Set<Pomodoro> pomodoro;
     
-    @ManyToOne
-    @JoinColumn(name = "pomID", referencedColumnName = "pomID", nullable = false)
-    private Pomodoro pomodoro;
+    @OneToMany(mappedBy = "user")
+    private Set<Task> tasks;
     
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "UserTeam", joinColumns = @JoinColumn(name = "email", referencedColumnName = "email"), inverseJoinColumns = @JoinColumn(name = "teamID", referencedColumnName = "teamID"))
-    public Set<Team> getTeams(){
-        return teams;
-    }
+    @JoinTable(name = "UserTeam", joinColumns = @JoinColumn(name = "email", referencedColumnName = "email"), 
+               inverseJoinColumns = @JoinColumn(name = "teamID", referencedColumnName = "teamID"))
+    private Set<Team> teams;
     
     public User(String email, String fName, String lName) {
         super();
@@ -72,16 +71,28 @@ public class User {
     public void setlName(String lName) {
         this.lName = lName;
     }
+    
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
 
-    public Pomodoro getPomodoro() {
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public Set<Pomodoro> getPomodoro() {
         return pomodoro;
     }
 
-    public void setPomodoro(Pomodoro pomodoro) {
+    public void setPomodoro(Set<Pomodoro> pomodoro) {
         this.pomodoro = pomodoro;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }

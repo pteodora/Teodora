@@ -1,5 +1,0 @@
-package execom.pomodoro.entity;
-
-public @interface Entity {
-
-}

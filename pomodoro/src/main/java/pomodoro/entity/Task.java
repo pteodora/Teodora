@@ -1,9 +1,14 @@
 package pomodoro.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +22,13 @@ public class Task {
     
     @Column(name = "taskName", unique = false, nullable = false)
     private String taskName;
+
+    @ManyToOne
+    @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "tasks")
+    private Set<Pomodoro> pomodoros;
     
     public Task() {
         super();
@@ -42,5 +54,21 @@ public class Task {
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Pomodoro> getPomodoros() {
+        return pomodoros;
+    }
+
+    public void setPomodoros(Set<Pomodoro> pomodoros) {
+        this.pomodoros = pomodoros;
     }
 }

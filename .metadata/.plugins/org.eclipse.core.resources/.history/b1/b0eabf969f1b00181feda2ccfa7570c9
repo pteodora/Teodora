@@ -1,9 +1,0 @@
-package pomodoro.entity;
-
-import javax.persistence.Entity;
-
-@Entity
-@Table(Name = "User")
-public class User {
-
-}

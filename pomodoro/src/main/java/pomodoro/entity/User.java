@@ -26,17 +26,15 @@ public class User {
     @Column(name = "lName", unique = false, nullable = false)
     private String lName;
     
-    private Set<Team> teams;
-    
     @ManyToOne
     @JoinColumn(name = "pomID", referencedColumnName = "pomID", nullable = false)
     private Pomodoro pomodoro;
     
+    
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "UserTeam", joinColumns = @JoinColumn(name = "email", referencedColumnName = "email"), inverseJoinColumns = @JoinColumn(name = "teamID", referencedColumnName = "teamID"))
-    public Set<Team> getTeams(){
-        return teams;
-    }
+    @JoinTable(name = "UserTeam", joinColumns = @JoinColumn(name = "email", referencedColumnName = "email"), 
+               inverseJoinColumns = @JoinColumn(name = "teamID", referencedColumnName = "teamID"))
+    private Set<Team> teams;
     
     public User(String email, String fName, String lName) {
         super();

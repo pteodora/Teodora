@@ -1,9 +1,0 @@
-package pomodoro.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import pomodoro.entity.Team;
-
-public interface TeamRepository extends JpaRepository<Team, String>{
-
-}

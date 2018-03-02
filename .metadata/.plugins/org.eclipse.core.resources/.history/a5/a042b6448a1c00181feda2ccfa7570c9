@@ -1,9 +1,0 @@
-package pomodoro.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import pomodoro.entity.User;
-
-public interface UserRepository extends JpaRepository<User, String>{
-	User findOneByUser(String user);
-}

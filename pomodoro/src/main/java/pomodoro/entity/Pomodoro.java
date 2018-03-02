@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "Pomodoro")
 public class Pomodoro {
 
-    @Id
+    @Id 
     @GeneratedValue
     @Column(name = "pomID", unique = true, nullable = false)
     private int pomID;
@@ -25,7 +25,7 @@ public class Pomodoro {
     @Column(name = "pName", unique = false, nullable = false)
     private String pName;
 
-    @OneToMany(mappedBy = "pomID")
+    @OneToMany(mappedBy = "pomodoro")
     private Set<User> users;
     
     public Pomodoro() {

@@ -1,5 +1,0 @@
-package pomodoro.service;
-
-public class UserService implements UserDetailService {
-
-}

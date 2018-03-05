@@ -38,14 +38,13 @@ public class User {
     private Set<Team> teams;
     
     public User(String email, String fName, String lName) {
-        super();
         this.email = email;
         this.fName = fName;
         this.lName = lName;
     }
 
     public User() {
-        super();
+
     }
 
     public String getEmail() {

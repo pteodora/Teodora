@@ -5,6 +5,7 @@ public class UserDTO {
     private String email;
     private String fName;
     private String lName;
+    
     public String getEmail() {
         return email;
     }

@@ -19,10 +19,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) {
-        userService.saveOrUpdate(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getAllUsers() {
+        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{email}", method = RequestMethod.GET)
@@ -30,9 +29,10 @@ public class UserController {
         return new ResponseEntity<>(userService.getById(email), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAllUsers() {
-        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) {
+        userService.saveOrUpdate(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{email}", method = RequestMethod.DELETE)

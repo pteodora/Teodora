@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pomodoro.dto.UserDTO;
+import pomodoro.dto.UserDto;
 import pomodoro.entity.User;
 import pomodoro.repository.UserRepository;
 
@@ -18,38 +18,38 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public List<UserDTO> getAll() {
+    public List<UserDto> getAll() {
         List<User> users = userRepository.findAll();
-        List<UserDTO> usersDTO = new ArrayList<UserDTO>();
-        for (User user : users) {
-            UserDTO userDTO = new UserDTO();
-            userDTO.setEmail(user.getEmail());
-            userDTO.setfName(user.getfName());
-            userDTO.setlName(user.getlName());
-            usersDTO.add(userDTO);
-        }
-        return usersDTO;
+        List<UserDto> usersDto = new ArrayList<UserDto>();
+        users.stream().forEach(user -> {
+            UserDto userDto = new UserDto();
+            userDto.setEmail(user.getEmail());
+            userDto.setFirstName(user.getFirstName());
+            userDto.setLastName(user.getLastName());
+            usersDto.add(userDto);
+        });
+        return usersDto;
     }
 
     @Transactional(readOnly = true)
-    public UserDTO getById(String email) {
+    public UserDto getById(String email) {
         User user = userRepository.findOne(email);
-        UserDTO userDTO = new UserDTO();
-        userDTO.setEmail(user.getEmail());
-        userDTO.setfName(user.getfName());
-        userDTO.setlName(user.getlName());
-        return userDTO;
+        UserDto userDto = new UserDto();
+        userDto.setEmail(user.getEmail());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        return userDto;
     }
 
     @Transactional
-    public User saveOrUpdate(UserDTO userDTO) {
-        User user = userRepository.findOne(userDTO.getEmail());
+    public User saveOrUpdate(UserDto userDto) {
+        User user = userRepository.findOne(userDto.getEmail());
         if (user == null) {
             user = new User();
         }
-        user.setEmail(userDTO.getEmail());
-        user.setfName(userDTO.getfName());
-        user.setlName(userDTO.getlName());
+        user.setEmail(userDto.getEmail());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
         return userRepository.save(user);
     }
 

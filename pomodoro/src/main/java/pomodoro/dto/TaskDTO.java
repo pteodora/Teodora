@@ -1,34 +1,32 @@
 package pomodoro.dto;
 
-public class TaskDTO {
+public class TaskDto {
 
-    private int taskID;
-    private String taskName;
+    private Long taskId;
+    private String name;
 
-    public TaskDTO(int taskID, String taskName) {
-        super();
-        this.taskID = taskID;
-        this.taskName = taskName;
+    public TaskDto(Long taskId, String name) {
+        this.taskId = taskId;
+        this.name = name;
     }
 
-    public TaskDTO() {
-        super();
+    public TaskDto() {
     }
 
-    public int getTaskID() {
-        return taskID;
+    public Long getTaskId() {
+        return taskId;
     }
 
-    public void setTaskID(int taskID) {
-        this.taskID = taskID;
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getName() {
+        return name;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

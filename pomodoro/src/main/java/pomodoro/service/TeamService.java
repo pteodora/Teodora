@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pomodoro.dto.TeamDTO;
+import pomodoro.dto.TeamDto;
 import pomodoro.entity.Team;
 import pomodoro.repository.TeamRepository;
 
@@ -18,39 +18,39 @@ public class TeamService {
     private TeamRepository teamRepository;
 
     @Transactional
-    public List<TeamDTO> getAll() {
+    public List<TeamDto> getAll() {
         List<Team> teams = teamRepository.findAll();
-        List<TeamDTO> teamsDTO = new ArrayList<TeamDTO>();
-        for (Team team : teams) {
-            TeamDTO teamDTO = new TeamDTO();
-            teamDTO.setTeamID(team.getTeamID());
-            teamDTO.setTeamName(team.getTeamName());
-            teamsDTO.add(teamDTO);
-        }
-        return teamsDTO;
+        List<TeamDto> teamsDto = new ArrayList<TeamDto>();
+        teams.stream().forEach(team -> {
+            TeamDto teamDto = new TeamDto();
+            teamDto.setTeamId(team.getTeamId());
+            teamDto.setName(team.getName());
+            teamsDto.add(teamDto);
+        });
+        return teamsDto;
     }
 
     @Transactional(readOnly = true)
-    public TeamDTO getById(int teamId) {
+    public TeamDto getById(Long teamId) {
         Team team = teamRepository.findOne(teamId);
-        TeamDTO teamDTO = new TeamDTO();
-        teamDTO.setTeamID(team.getTeamID());
-        teamDTO.setTeamName(team.getTeamName());
-        return teamDTO;
+        TeamDto teamDto = new TeamDto();
+        teamDto.setTeamId(team.getTeamId());
+        teamDto.setName(team.getName());
+        return teamDto;
     }
 
     @Transactional
-    public Team saveOrUpdate(TeamDTO teamDTO) {
-        Team team = teamRepository.findOne(teamDTO.getTeamID());
+    public Team saveOrUpdate(TeamDto teamDto) {
+        Team team = teamRepository.findOne(teamDto.getTeamId());
         if (team == null) {
             team = new Team();
         }
-        team.setTeamID(teamDTO.getTeamID());
-        team.setTeamName(teamDTO.getTeamName());
+        team.setTeamId(teamDto.getTeamId());
+        team.setName(teamDto.getName());
         return teamRepository.save(team);
     }
 
-    public void delete(int teamID) {
-        teamRepository.delete(teamID);
+    public void delete(Long teamId) {
+        teamRepository.delete(teamId);
     }
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import pomodoro.entity.Pomodoro;
 
 @Repository
-public interface PomodoroRepository extends JpaRepository<Pomodoro, Integer> {
+public interface PomodoroRepository extends JpaRepository<Pomodoro, Long> {
 
 }

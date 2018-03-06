@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import pomodoro.entity.Team;
 
 @Repository
-public interface TeamRepository extends JpaRepository<Team, Integer>{
+public interface TeamRepository extends JpaRepository<Team, Long>{
 
 }

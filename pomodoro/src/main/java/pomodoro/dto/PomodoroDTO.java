@@ -1,34 +1,32 @@
 package pomodoro.dto;
 
-public class PomodoroDTO {
+public class PomodoroDto {
 
-    private int pomID;
-    private String pName;
+    private Long pomId;
+    private String name;
 
-    public PomodoroDTO(int pomID, String pName) {
-        super();
-        this.pomID = pomID;
-        this.pName = pName;
+    public PomodoroDto(Long pomId, String name) {
+        this.pomId = pomId;
+        this.name = name;
     }
 
-    public PomodoroDTO() {
-        super();
+    public PomodoroDto() {
     }
 
-    public int getPomID() {
-        return pomID;
+    public Long getPomId() {
+        return pomId;
     }
 
-    public void setPomID(int pomID) {
-        this.pomID = pomID;
+    public void setPomId(Long pomId) {
+        this.pomId = pomId;
     }
 
-    public String getpName() {
-        return pName;
+    public String getName() {
+        return name;
     }
 
-    public void setpName(String pName) {
-        this.pName = pName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

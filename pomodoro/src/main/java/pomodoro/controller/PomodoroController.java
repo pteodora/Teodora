@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import pomodoro.dto.PomodoroDTO;
+import pomodoro.dto.PomodoroDto;
 import pomodoro.service.PomodoroService;
 
 @RestController
@@ -17,28 +17,27 @@ import pomodoro.service.PomodoroService;
 public class PomodoroController {
 
     @Autowired
-    PomodoroService pomodoroService;
+    private PomodoroService pomodoroService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllPomodoros() {
         return new ResponseEntity<>(pomodoroService.getAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{pomID}", method = RequestMethod.GET)
-    public ResponseEntity<?> getPomodoro(@PathVariable("pomID") int pomID) {
-        return new ResponseEntity<>(pomodoroService.getById(pomID),
-                HttpStatus.OK);
+    @RequestMapping(value = "/{pomId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getPomodoro(@PathVariable("pomId") Long pomId) {
+        return new ResponseEntity<>(pomodoroService.getById(pomId), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> savePomodoro(@RequestBody PomodoroDTO pomodoroDTO) {
-        pomodoroService.saveOrUpdate(pomodoroDTO);
+    public ResponseEntity<?> savePomodoro(@RequestBody PomodoroDto pomodoroDto) {
+        pomodoroService.saveOrUpdate(pomodoroDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{pomID}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deletePomodoro(@PathVariable("pomID") int pomID) {
-        pomodoroService.delete(pomID);
+    @RequestMapping(value = "/{pomId}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deletePomodoro(@PathVariable("pomId") Long pomId) {
+        pomodoroService.delete(pomId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

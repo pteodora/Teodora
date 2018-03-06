@@ -1,33 +1,33 @@
 package pomodoro.dto;
 
-public class TeamDTO {
+public class TeamDto {
 
-    private int teamID;
-    private String teamName;
+    private Long teamId;
+    private String name;
 
-    public int getTeamID() {
-        return teamID;
+    public TeamDto(Long teamId, String name) {
+        this.teamId = teamId;
+        this.name = name;
     }
 
-    public void setTeamID(int teamID) {
-        this.teamID = teamID;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public TeamDTO(int teamID, String teamName) {
-        super();
-        this.teamID = teamID;
-        this.teamName = teamName;
-    }
-
-    public TeamDTO() {
+    public TeamDto() {
         super();
     }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

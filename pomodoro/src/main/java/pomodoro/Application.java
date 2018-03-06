@@ -10,7 +10,7 @@ import org.springframework.boot.orm.jpa.EntityScan;
 @EntityScan("pomodoro.entity")
 @SpringBootApplication
 public class Application {
-    
+
     @Autowired
     DataSource dataSource;
 

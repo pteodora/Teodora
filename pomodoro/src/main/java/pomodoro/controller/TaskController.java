@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import pomodoro.dto.TaskDTO;
+import pomodoro.dto.TaskDto;
 import pomodoro.service.TaskService;
 
 @RestController
@@ -17,27 +17,27 @@ import pomodoro.service.TaskService;
 public class TaskController {
 
     @Autowired
-    TaskService taskService;
+    private TaskService taskService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllTasks() {
         return new ResponseEntity<>(taskService.getAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{taskID}", method = RequestMethod.GET)
-    public ResponseEntity<?> getTask(int taskID) {
-        return new ResponseEntity<>(taskService.getById(taskID), HttpStatus.OK);
+    @RequestMapping(value = "/{taskId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getTask(Long taskId) {
+        return new ResponseEntity<>(taskService.getById(taskId), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> saveTask(@RequestBody TaskDTO taskDTO) {
-        taskService.saveOrUpdate(taskDTO);
+    public ResponseEntity<?> saveTask(@RequestBody TaskDto taskDto) {
+        taskService.saveOrUpdate(taskDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{taskID}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteTask(@PathVariable("taskID") int taskID) {
-        taskService.delete(taskID);
+    @RequestMapping(value = "/{taskId}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteTask(@PathVariable("taskId") long taskId) {
+        taskService.delete(taskId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

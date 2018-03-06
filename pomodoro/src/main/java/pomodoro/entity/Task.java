@@ -14,14 +14,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Task")
 public class Task {
-    
+
     @Id
     @GeneratedValue
-    @Column(name = "taskID", unique = true, nullable = false)
-    private int taskID;
-    
-    @Column(name = "taskName", unique = false, nullable = false)
-    private String taskName;
+    @Column(name = "taskId", unique = true, nullable = false)
+    private Long taskId;
+
+    @Column(name = "name", unique = false, nullable = false)
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
@@ -29,31 +29,29 @@ public class Task {
 
     @OneToMany(mappedBy = "tasks")
     private Set<Pomodoro> pomodoros;
-    
+
     public Task() {
-        super();
     }
 
-    public Task(int taskID, String taskName) {
-        super();
-        this.taskID = taskID;
-        this.taskName = taskName;
+    public Task(Long taskId, String name) {
+        this.taskId = taskId;
+        this.name = name;
     }
 
-    public int getTaskID() {
-        return taskID;
+    public Long getTaskId() {
+        return taskId;
     }
 
-    public void setTaskID(int taskID) {
-        this.taskID = taskID;
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getName() {
+        return name;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public User getUser() {

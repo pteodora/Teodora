@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import pomodoro.dto.UserDTO;
+import pomodoro.dto.UserDto;
 import pomodoro.service.UserService;
 
 @RestController
@@ -17,7 +17,7 @@ import pomodoro.service.UserService;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllUsers() {
@@ -30,8 +30,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) {
-        userService.saveOrUpdate(user);
+    public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {
+        userService.saveOrUpdate(userDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

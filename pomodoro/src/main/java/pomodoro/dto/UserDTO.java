@@ -1,36 +1,43 @@
 package pomodoro.dto;
 
-public class UserDTO {
-    
+public class UserDto {
+
     private String email;
-    private String fName;
-    private String lName;
-    
+    private String firstName;
+    private String lastName;
+
+    public UserDto(String email, String firstName, String lastName) {
+        super();
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public UserDto() {
+        super();
+    }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getfName() {
-        return fName;
+
+    public String getFirstName() {
+        return firstName;
     }
-    public void setfName(String fName) {
-        this.fName = fName;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    public String getlName() {
-        return lName;
+
+    public String getLastName() {
+        return lastName;
     }
-    public void setlName(String lName) {
-        this.lName = lName;
-    }
-    public UserDTO(String email, String fName, String lName) {
-        super();
-        this.email = email;
-        this.fName = fName;
-        this.lName = lName;
-    }
-    public UserDTO() {
-        super();
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

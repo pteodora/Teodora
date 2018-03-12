@@ -9,53 +9,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Pomodoro")
 public class Pomodoro {
 
-    @Id 
+    @Id
     @GeneratedValue
-    @Column(name = "pomID", unique = true, nullable = false)
-    private int pomID;
-    
-    @Column(name = "pName", unique = false, nullable = false)
-    private String pName;
+    @Column(name = "pomId", unique = true, nullable = false)
+    private Long pomId;
+
+    @Column(name = "name", unique = false, nullable = false)
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
     private User user;
-    
+
     @ManyToOne
-    @JoinColumn(name = "taskID", referencedColumnName = "taskID", nullable = false)
+    @JoinColumn(name = "taskId", referencedColumnName = "taskId", nullable = false)
     private Task tasks;
-    
+
     public Pomodoro() {
-        super();
     }
 
-    public Pomodoro(int pomID, String pName, User user, Task tasks) {
-        super();
-        this.pomID = pomID;
-        this.pName = pName;
+    public Pomodoro(Long pomId, String name, User user, Task tasks) {
+        this.pomId = pomId;
+        this.name = name;
         this.user = user;
         this.tasks = tasks;
     }
 
-    public int getPomID() {
-        return pomID;
-    }
-    
-    public void setPomID(int pomID) {
-        this.pomID = pomID;
+    public Long getPomId() {
+        return pomId;
     }
 
-    public String getpName() {
-        return pName;
+    public void setPomId(Long pomId) {
+        this.pomId = pomId;
     }
 
-    public void setpName(String pName) {
-        this.pName = pName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public User getUser() {

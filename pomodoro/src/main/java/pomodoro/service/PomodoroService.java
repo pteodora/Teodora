@@ -25,6 +25,7 @@ public class PomodoroService {
             PomodoroDto pomodoroDto = new PomodoroDto();
             pomodoroDto.setPomId(pomodoro.getPomId());
             pomodoroDto.setName(pomodoro.getName());
+            pomodoroDto.setEmail(pomodoro.getUser().getEmail());
             pomodorosDto.add(pomodoroDto);
         });
         return pomodorosDto;
@@ -36,6 +37,7 @@ public class PomodoroService {
         PomodoroDto pomodoroDto = new PomodoroDto();
         pomodoroDto.setPomId(pomodoro.getPomId());
         pomodoroDto.setName(pomodoro.getName());
+        pomodoroDto.setEmail(pomodoro.getUser().getEmail());
         return pomodoroDto;
     }
 

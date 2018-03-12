@@ -11,7 +11,6 @@ public class TeamDto {
     }
 
     public TeamDto() {
-        super();
     }
 
     public Long getTeamId() {

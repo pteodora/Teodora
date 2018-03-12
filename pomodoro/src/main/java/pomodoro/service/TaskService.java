@@ -16,6 +16,8 @@ public class TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
+    @Autowired
+    private UserService userService;
 
     @Transactional(readOnly = true)
     public List<TaskDto> getAll() {
@@ -25,6 +27,7 @@ public class TaskService {
             TaskDto taskDto = new TaskDto();
             taskDto.setTaskId(task.getTaskId());
             taskDto.setName(task.getName());
+            taskDto.setEmail(task.getUser().getEmail());
             tasksDto.add(taskDto);
         });
         return tasksDto;
@@ -36,6 +39,7 @@ public class TaskService {
         TaskDto taskDto = new TaskDto();
         taskDto.setTaskId(task.getTaskId());
         taskDto.setName(task.getName());
+        taskDto.setEmail(task.getUser().getEmail());
         return taskDto;
     }
 

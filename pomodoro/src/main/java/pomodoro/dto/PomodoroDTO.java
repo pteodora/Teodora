@@ -4,10 +4,12 @@ public class PomodoroDto {
 
     private Long pomId;
     private String name;
+    private String email;
 
-    public PomodoroDto(Long pomId, String name) {
+    public PomodoroDto(Long pomId, String name, String email) {
         this.pomId = pomId;
         this.name = name;
+        this.email = email;
     }
 
     public PomodoroDto() {
@@ -27,6 +29,14 @@ public class PomodoroDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

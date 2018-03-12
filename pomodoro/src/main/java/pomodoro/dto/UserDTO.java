@@ -7,14 +7,12 @@ public class UserDto {
     private String lastName;
 
     public UserDto(String email, String firstName, String lastName) {
-        super();
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     public UserDto() {
-        super();
     }
 
     public String getEmail() {

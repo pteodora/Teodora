@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/taskController.js"></script>
+<script src="scripts/services/taskService.js"></script>
+<meta charset="ISO-8859-1">
+<title>Tasks</title>
+</head>
+<body ng-app="pomodoroapp">
+
+	<div>
+		<h3>Tasks</h3>
+	</div>
+
+	<div class="input-group col-sm-4 col-sm-offset-8"
+		style="margin-bottom: 10px;">
+		<input class="form-control" type="text" name="searchTerm"
+			ng-model="searchTerm" /> <span class="input-group-btn">
+			<button ng-click="search(searchTerm)" class="btn">Search</button>
+		</span>
+	</div>
+
+	<table class="table table-bordered">
+		<tr>
+			<th>Task name</th>
+		</tr>
+		<tr ng-repeat="task in tasks">
+			<td>{{task.name}}
+				<button type="button" class="btn btn-primary" aria-label="Izmena"
+					ng-click="openModal(task)">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-primary" aria-label="Brisanje"
+					ng-click="deleteTask(task.taskId)">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+	<div class="right">
+		<button type="button" class="btn btn-success" aria-label="Dodavanje"
+			ng-click="openModal()">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/userController.js"></script>
+<script src="scripts/services/userService.js"></script>
+<meta charset="ISO-8859-1">
+<title>User</title>
+</head>
+<body ng-app="pomodoroapp">
+<div>
+	<h1>User</h1>
+	<div>
+		<p>User:  {{user.fullName}}</p>
+	</div>
+	<div>
+		<p>Email: {{user.email}} </p>
+	</div>
+</div>
+<a href="#!/">home</a>
+</body>
+</html>

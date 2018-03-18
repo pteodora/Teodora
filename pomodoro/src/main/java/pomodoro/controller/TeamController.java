@@ -1,5 +1,7 @@
 package pomodoro.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,29 +15,33 @@ import pomodoro.dto.TeamDto;
 import pomodoro.service.TeamService;
 
 @RestController
-@RequestMapping("/teams")
 public class TeamController {
 
     @Autowired
     private TeamService teamService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/allTeams", method = RequestMethod.GET)
     public ResponseEntity<?> getAllTeams() {
         return new ResponseEntity<>(teamService.getAll(), HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/userTeams", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserTeams(Principal principal) {
+        return new ResponseEntity<>(teamService.findUserTeams(principal), HttpStatus.OK);
+    }
 
-    @RequestMapping(value = "/{teamId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/selectedTeam/{teamId}", method = RequestMethod.GET)
     public ResponseEntity<?> getTeam(@PathVariable("teamId") Long teamId) {
         return new ResponseEntity<>(teamService.getById(teamId), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> saveTeam(@RequestBody TeamDto teamDto) {
-        teamService.saveOrUpdate(teamDto);
+    @RequestMapping(value = "/saveTeam", method = RequestMethod.POST)
+    public ResponseEntity<?> saveTeam(@RequestBody TeamDto newTeam, Principal principal) {
+        teamService.saveOrUpdate(newTeam, principal);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{teamId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteTeam/{teamId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteTeam(@PathVariable("teamId") Long teamId) {
         teamService.delete(teamId);
         return new ResponseEntity<>(HttpStatus.OK);

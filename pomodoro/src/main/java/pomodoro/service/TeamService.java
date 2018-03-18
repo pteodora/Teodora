@@ -1,21 +1,30 @@
 package pomodoro.service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pomodoro.dto.TeamDetailDto;
 import pomodoro.dto.TeamDto;
 import pomodoro.entity.Team;
+import pomodoro.entity.User;
 import pomodoro.repository.TeamRepository;
+import pomodoro.repository.UserRepository;
 
 @Service
 public class TeamService {
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Transactional
     public List<TeamDto> getAll() {
@@ -30,24 +39,46 @@ public class TeamService {
         return teamsDto;
     }
 
+    @Transactional
+    @SuppressWarnings("unchecked")
+    public List<TeamDto> findUserTeams(Principal principal) {
+        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
+                .getDetails();
+        User user = userRepository.findOne(details.get("email"));
+        List<TeamDto> teamsDto = new ArrayList<>();
+        for (Team team : user.getTeams()) {
+            TeamDto teamDto = new TeamDto();
+            teamDto.setTeamId(team.getTeamId());
+            teamDto.setName(team.getName());
+            teamsDto.add(teamDto);
+        }
+        return teamsDto;
+    }
+
     @Transactional(readOnly = true)
-    public TeamDto getById(Long teamId) {
+    public TeamDetailDto getById(Long teamId) {
         Team team = teamRepository.findOne(teamId);
-        TeamDto teamDto = new TeamDto();
-        teamDto.setTeamId(team.getTeamId());
-        teamDto.setName(team.getName());
-        return teamDto;
+        TeamDetailDto teamDetailDto = new TeamDetailDto(team);
+        return teamDetailDto;
     }
 
     @Transactional
-    public Team saveOrUpdate(TeamDto teamDto) {
-        Team team = teamRepository.findOne(teamDto.getTeamId());
+    @SuppressWarnings("unchecked")
+    public void saveOrUpdate(TeamDto teamDto, Principal principal) {
+        Team team = null;
+        if (teamDto.getTeamId() != null) {
+            team = teamRepository.findOne(teamDto.getTeamId());
+        }
         if (team == null) {
             team = new Team();
         }
-        team.setTeamId(teamDto.getTeamId());
         team.setName(teamDto.getName());
-        return teamRepository.save(team);
+        teamRepository.save(team);
+        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
+                .getDetails();
+        User user = userRepository.findOne(details.get("email"));
+        user.getTeams().add(team);
+        userRepository.save(user);
     }
 
     public void delete(Long teamId) {

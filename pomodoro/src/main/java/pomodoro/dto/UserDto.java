@@ -2,9 +2,6 @@ package pomodoro.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
-import pomodoro.entity.Pomodoro;
 
 public class UserDto {
 

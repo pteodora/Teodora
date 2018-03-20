@@ -20,10 +20,6 @@
 						console.log(error);
 					});
 				}
-				
-				$scope.leaveTeam = function(teamId) {
-					
-				}
 
 				var initialization = function() {
 					$scope.getUserTeams();

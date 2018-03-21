@@ -30,9 +30,7 @@ public class TeamDetailDto {
             userDto.setFirstName(user.getFirstName());
             userDto.setLastName(user.getLastName());
             for (Pomodoro pomodoro : user.getPomodoro()) {
-                PomodoroDto pomodoroDto = new PomodoroDto();
-                pomodoroDto.setPomId(pomodoro.getPomId());
-                pomodoroDto.setName(pomodoro.getName());
+                PomodoroDto pomodoroDto = new PomodoroDto(pomodoro);
                 userDto.getPomodoros().add(pomodoroDto);
             }
             users.add(userDto);

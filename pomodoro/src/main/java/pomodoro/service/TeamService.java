@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pomodoro.dto.TeamDetailDto;
 import pomodoro.dto.TeamDto;
-import pomodoro.dto.UserDto;
 import pomodoro.entity.Team;
 import pomodoro.entity.User;
 import pomodoro.repository.TeamRepository;
@@ -74,17 +73,22 @@ public class TeamService {
             team = new Team();
         }
         team.setName(teamDto.getName());
-        //teamRepository.save(team);
         Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
                 .getDetails();
         User user = userRepository.findOne(details.get("email"));
         user.getTeams().add(team);
         userRepository.save(user);
     }
-    
+
     @Transactional
-    public void inviteUser(UserDto userDto) {
-        
+    public void inviteUser(Long teamId, String email) {
+        Team team = teamRepository.findOne(teamId);
+        User user = null;
+        if (userRepository.findOne(email) != null) {
+            user = userRepository.findOne(email);
+            user.getTeams().add(team);
+            userRepository.save(user);
+        }
     }
 
     @Transactional

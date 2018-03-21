@@ -13,10 +13,10 @@
       });
       return deferred.promise;
     }
-
-    service.getUserTeams = function() {
+    
+    service.inviteUser = function(teamId, email) {
       var deferred = $q.defer();
-      $http.get('userTeams').then(function(response) {
+      $http.post('inviteUser/'+ teamId +'/'+ email).then(function(response) {
         deferred.resolve(response);
       }, function(error) {
         deferred.reject(error);
@@ -34,9 +34,9 @@
       return deferred.promise;
     }
 
-    service.leaveTeam = function(teamId) {
+    service.getUserTeams = function() {
       var deferred = $q.defer();
-      $http.get('leaveTeam/'+ teamId).then(function(response) {
+      $http.get('userTeams').then(function(response) {
         deferred.resolve(response);
       }, function(error) {
         deferred.reject(error);
@@ -44,9 +44,10 @@
       return deferred.promise;
     }
 
-    service.inviteUser = function(email) {
+
+    service.leaveTeam = function(teamId) {
       var deferred = $q.defer();
-      $http.post('inviteUser', email).then(function(response) {
+      $http.get('leaveTeam/'+ teamId).then(function(response) {
         deferred.resolve(response);
       }, function(error) {
         deferred.reject(error);

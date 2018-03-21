@@ -3,10 +3,8 @@
   <h3>Users</h3>
 </div>
 
-<div class="input-group col-sm-4 col-sm-offset-8"
-  style="margin-bottom: 10px;">
-  <input class="form-control" type="text" name="searchTerm"
-    ng-model="searchTerm" /> <span class="input-group-btn">
+<div class="input-group col-sm-4 col-sm-offset-8" style="margin-bottom: 10px;">
+  <input class="form-control" type="text" name="searchTerm" ng-model="searchTerm" /> <span class="input-group-btn">
     <button ng-click="search(searchTerm)" class="btn">Search</button>
   </span>
 </div>
@@ -21,20 +19,17 @@
     <td>{{user.email}}</td>
     <td>{{user.firstName}}</td>
     <td>{{user.lastName}}
-      <button type="button" class="btn btn-primary" aria-label="Izmena"
-        ng-click="openModal(user)">
+      <button type="button" class="btn btn-primary" aria-label="Izmena" ng-click="openModal(user)">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
       </button>
-      <button type="button" class="btn btn-primary"
-        aria-label="Brisanje" ng-click="deleteUser(user.email)">
+      <button type="button" class="btn btn-primary" aria-label="Brisanje" ng-click="deleteUser(user.email)">
         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       </button>
     </td>
   </tr>
 </table>
 <div class="right">
-  <button type="button" class="btn btn-success" aria-label="Dodavanje"
-    ng-click="openModal()">
+  <button type="button" class="btn btn-success" aria-label="Dodavanje" ng-click="openModal()">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
   </button>
 </div>

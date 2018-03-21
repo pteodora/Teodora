@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pomodoro.dto.TeamDto;
-import pomodoro.dto.UserDto;
 import pomodoro.service.TeamService;
 
 @RestController
@@ -40,6 +38,12 @@ public class TeamController {
     @RequestMapping(value = "/saveTeam", method = RequestMethod.POST)
     public ResponseEntity<?> saveTeam(@RequestBody TeamDto newTeam, Principal principal) {
         teamService.saveOrUpdate(newTeam, principal);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/inviteUser/{teamId}/{email}", method = RequestMethod.POST)
+    public ResponseEntity<?> inviteUser(@PathVariable("teamId") Long teamId, @PathVariable("email") String email) {
+        teamService.inviteUser(teamId, email);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

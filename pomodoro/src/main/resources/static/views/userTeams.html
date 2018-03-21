@@ -11,13 +11,11 @@
     <tbody>
       <tr ng-repeat="team in teams">
         <td><a href="#!/teamDetails/{{team.teamId}}">{{team.name}}</a></td>
-        <td><input type="button" value="Leave team"
-          ng-click="leaveTeam(team.teamId)"></td>
+        <td><input type="button" value="Leave team" ng-click="leaveTeam(team.teamId)"></td>
       </tr>
       <tr>
         <td><input type="text" ng-model="newTeam.name" placeholder="Enter new team name..."></td>
-        <td><input type="button" value="Add new team"
-          ng-click="addNewTeam()"></td>
+        <td><input type="button" value="Add new team" ng-click="addNewTeam()"></td>
       </tr>
     </tbody>
   </table>

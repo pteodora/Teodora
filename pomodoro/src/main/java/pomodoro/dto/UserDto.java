@@ -8,7 +8,7 @@ public class UserDto {
     private String email;
     private String firstName;
     private String lastName;
-    private List<PomodoroDto> pomodoros = new ArrayList<PomodoroDto>();
+    private List<PomodoroDto> pomodoros = new ArrayList<>();
 
     public UserDto(String email, String firstName, String lastName) {
         this.email = email;

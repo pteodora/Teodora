@@ -1,33 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/userController.js"></script>
-<script src="scripts/services/userService.js"></script>
-<meta charset="ISO-8859-1">
-<title>Login</title>
-</head>
-<body ng-app="pomodoroapp">
+
 <div>
-	<h1>All users</h1>
-	<table border="1">
-		<thead>
-			<tr>
-				<td>First Name</td>
-				<td>Email</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="user in allUsers">
-				<td ng-bind="user.firstName"></td>
-				<td ng-bind="user.email"></td>
-			</tr>
-		</tbody>
-	</table>
+  <h1>All users</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <td>First Name</td>
+        <td>Email</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in allUsers">
+        <td ng-bind="user.firstName"></td>
+        <td ng-bind="user.email"></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <a href="#!/">home</a>
-</body>
-</html>

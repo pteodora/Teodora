@@ -1,55 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/userController.js"></script>
-<script src="scripts/services/userService.js"></script>
-<meta charset="ISO-8859-1">
-<title>Users</title>
-</head>
-<body ng-app="pomodoroapp">
 
-	<div>
-		<h3>Users</h3>
-	</div>
+<div>
+  <h3>Users</h3>
+</div>
 
-	<div class="input-group col-sm-4 col-sm-offset-8"
-		style="margin-bottom: 10px;">
-		<input class="form-control" type="text" name="searchTerm"
-			ng-model="searchTerm" /> <span class="input-group-btn">
-			<button ng-click="search(searchTerm)" class="btn">Search</button>
-		</span>
-	</div>
+<div class="input-group col-sm-4 col-sm-offset-8"
+  style="margin-bottom: 10px;">
+  <input class="form-control" type="text" name="searchTerm"
+    ng-model="searchTerm" /> <span class="input-group-btn">
+    <button ng-click="search(searchTerm)" class="btn">Search</button>
+  </span>
+</div>
 
-	<table class="table table-bordered">
-		<tr>
-			<th>Email</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-		</tr>
-		<tr ng-repeat="user in users">
-			<td>{{user.email}}</td>
-			<td>{{user.firstName}}</td>
-			<td>{{user.lastName}}
-				<button type="button" class="btn btn-primary" aria-label="Izmena"
-					ng-click="openModal(user)">
-					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-				</button>
-				<button type="button" class="btn btn-primary" aria-label="Brisanje"
-					ng-click="deleteUser(user.email)">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-				</button>
-			</td>
-		</tr>
-	</table>
-	<div class="right">
-		<button type="button" class="btn btn-success" aria-label="Dodavanje"
-			ng-click="openModal()">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		</button>
-	</div>
-</body>
-</html>
+<table class="table table-bordered">
+  <tr>
+    <th>Email</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+  </tr>
+  <tr ng-repeat="user in users">
+    <td>{{user.email}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}
+      <button type="button" class="btn btn-primary" aria-label="Izmena"
+        ng-click="openModal(user)">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="btn btn-primary"
+        aria-label="Brisanje" ng-click="deleteUser(user.email)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
+    </td>
+  </tr>
+</table>
+<div class="right">
+  <button type="button" class="btn btn-success" aria-label="Dodavanje"
+    ng-click="openModal()">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  </button>
+</div>

@@ -24,12 +24,12 @@ public class TeamDetailDto {
     public TeamDetailDto(Team team) {
         this.teamId = team.getTeamId();
         this.name = team.getName();
-        for(User user : team.getUsers()) {
+        for (User user : team.getUsers()) {
             UserDto userDto = new UserDto();
             userDto.setEmail(user.getEmail());
             userDto.setFirstName(user.getFirstName());
             userDto.setLastName(user.getLastName());
-            for(Pomodoro pomodoro : user.getPomodoro()){
+            for (Pomodoro pomodoro : user.getPomodoro()) {
                 PomodoroDto pomodoroDto = new PomodoroDto();
                 pomodoroDto.setPomId(pomodoro.getPomId());
                 pomodoroDto.setName(pomodoro.getName());

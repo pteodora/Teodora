@@ -1,20 +1,27 @@
-<h1>{{selectedTeam.name}}</h1>
+<h1>Details for "{{selectedTeam.name}}" team</h1>
+<hr color="BLUE"><hr color="BLUE">
 <div>
-	<p>Team details</p>
-	<div ng-repeat="user in selectedTeam.users">
-		<div>
-			<p>Email: {{user.email}}</p>
-			<p>First name: {{user.firstName}}</p>
-			<p>Last name: {{user.lastName}}</p>
-		</div>
-		<div>
-			<h5>Pomodoros</h5>
-			<div ng-repeat="pomodoro in user.pomodoros">
-				<p>{{pomodoro.name}}</p>
-				<input ng-if="'teodorapomana1@gmail.com'==user.email" type="button" value="Start pomodoro">
-				<p>User started a pomodoro</p>
-			</div>
-		</div>
-		<hr>
-	</div>
+  <div>
+    <p>Invite people to join your team</p>
+    <input type="text" ng-model = "addedUser.email" placeholder="Enter email address..."> <input
+      type="button" value="Invite" ng-click="inviteUser()">
+    <hr color="BLUE"><hr color="BLUE">
+  </div>
+  <h3>Team details</h3> <hr color="BLUE">
+  <div ng-repeat="user in selectedTeam.users">
+    <div>
+      <p>Name: {{user.firstName}} {{user.lastName}}</p>
+      <p>Email: {{user.email}}</p>
+    </div>
+    <div>
+      <h5>User's pomodoros</h5>
+      <div ng-repeat="pomodoro in user.pomodoros">
+        <p>{{pomodoro.name}}</p>
+        <input ng-if="'teodorapomana1@gmail.com'==user.email"
+          type="button" value="Start pomodoro">
+        <p>User started a pomodoro</p>
+      </div>
+    </div>
+    <hr>
+  </div>
 </div>

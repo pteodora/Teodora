@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pomodoro.dto.TeamDto;
+import pomodoro.dto.UserDto;
 import pomodoro.service.TeamService;
 
 @RestController
@@ -41,6 +43,12 @@ public class TeamController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/leaveTeam/{teamId}", method = RequestMethod.GET)
+    public ResponseEntity<?> leaveTeam(@PathVariable Long teamId, Principal principal) {
+        teamService.leaveTeam(teamId, principal);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/deleteTeam/{teamId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteTeam(@PathVariable("teamId") Long teamId) {
         teamService.delete(teamId);

@@ -1,12 +1,9 @@
 package pomodoro.service;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +26,7 @@ public class TeamService {
     @Transactional
     public List<TeamDto> getAll() {
         List<Team> teams = teamRepository.findAll();
-        List<TeamDto> teamsDto = new ArrayList<TeamDto>();
+        List<TeamDto> teamsDto = new ArrayList<>();
         teams.stream().forEach(team -> {
             TeamDto teamDto = new TeamDto();
             teamDto.setTeamId(team.getTeamId());
@@ -40,11 +37,8 @@ public class TeamService {
     }
 
     @Transactional
-    @SuppressWarnings("unchecked")
-    public List<TeamDto> findUserTeams(Principal principal) {
-        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
-                .getDetails();
-        User user = userRepository.findOne(details.get("email"));
+    public List<TeamDto> findUserTeams(String email) {
+        User user = userRepository.findOne(email);
         List<TeamDto> teamsDto = new ArrayList<>();
         for (Team team : user.getTeams()) {
             TeamDto teamDto = new TeamDto();
@@ -63,8 +57,7 @@ public class TeamService {
     }
 
     @Transactional
-    @SuppressWarnings("unchecked")
-    public void saveOrUpdate(TeamDto teamDto, Principal principal) {
+    public void saveOrUpdate(TeamDto teamDto, String email) {
         Team team = null;
         if (teamDto.getTeamId() != null) {
             team = teamRepository.findOne(teamDto.getTeamId());
@@ -73,9 +66,7 @@ public class TeamService {
             team = new Team();
         }
         team.setName(teamDto.getName());
-        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
-                .getDetails();
-        User user = userRepository.findOne(details.get("email"));
+        User user = userRepository.findOne(email);
         user.getTeams().add(team);
         userRepository.save(user);
     }
@@ -92,12 +83,9 @@ public class TeamService {
     }
 
     @Transactional
-    @SuppressWarnings("unchecked")
-    public void leaveTeam(Long teamId, Principal principal) {
-        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
-                .getDetails();
+    public void leaveTeam(Long teamId, String email) {
         Team team = teamRepository.findOne(teamId);
-        User user = userRepository.findOne(details.get("email"));
+        User user = userRepository.findOne(email);
         team.getUsers().remove(user);
         user.getTeams().remove(team);
     }

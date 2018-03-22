@@ -11,7 +11,7 @@ public class TeamDetailDto {
 
     private Long teamId;
     private String name;
-    private List<UserDto> users = new ArrayList<UserDto>();
+    private List<UserDto> users = new ArrayList<>();
 
     public TeamDetailDto(Long teamId, String name) {
         this.teamId = teamId;

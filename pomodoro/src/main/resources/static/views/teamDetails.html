@@ -20,15 +20,16 @@
       <h5>User's pomodoros</h5>
       <hr>
       <div ng-repeat="pomodoro in user.pomodoros">
-        <p>{{pomodoro.name}}</p>
+        <p >{{pomodoro.name}}</p>
+        <div id="time">Click to start pomodoro</div>
         <div ng-if="'teodorapomana1@gmail.com'==user.email">
-          <input type="button" id="start" value="Start"> <input type="button" id="stop" value="Stop"> 
-          <input id="clock" value="10:00">
+          <input type="button" id="startButton" onclick="startButton();" value="Start"> <input type="button"
+            id="pauseButton" value="Pause">
+          <div id="divStart" style="visibility:hidden; display:inline;">User started a new pomodoro</div>
         </div>
-        <p>User started a pomodoro</p>
-        <hr>
       </div>
+      <hr>
     </div>
-    <hr color="BLUE">
   </div>
+  <hr color="BLUE">
 </div>

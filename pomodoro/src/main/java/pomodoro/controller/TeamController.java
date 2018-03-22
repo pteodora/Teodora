@@ -1,10 +1,12 @@
 package pomodoro.controller;
 
 import java.security.Principal;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +27,13 @@ public class TeamController {
         return new ResponseEntity<>(teamService.getAll(), HttpStatus.OK);
     }
     
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/userTeams", method = RequestMethod.GET)
     public ResponseEntity<?> getUserTeams(Principal principal) {
-        return new ResponseEntity<>(teamService.findUserTeams(principal), HttpStatus.OK);
+        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
+                .getDetails();
+        String email = details.get("email");
+        return new ResponseEntity<>(teamService.findUserTeams(email), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/selectedTeam/{teamId}", method = RequestMethod.GET)
@@ -35,9 +41,13 @@ public class TeamController {
         return new ResponseEntity<>(teamService.getById(teamId), HttpStatus.OK);
     }
 
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/saveTeam", method = RequestMethod.POST)
     public ResponseEntity<?> saveTeam(@RequestBody TeamDto newTeam, Principal principal) {
-        teamService.saveOrUpdate(newTeam, principal);
+        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
+                .getDetails();
+        String email = details.get("email");
+        teamService.saveOrUpdate(newTeam, email);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -47,9 +57,13 @@ public class TeamController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/leaveTeam/{teamId}", method = RequestMethod.GET)
     public ResponseEntity<?> leaveTeam(@PathVariable Long teamId, Principal principal) {
-        teamService.leaveTeam(teamId, principal);
+        Map<String, String> details = (Map<String, String>) ((OAuth2Authentication) principal).getUserAuthentication()
+                .getDetails();
+        String email = details.get("email");
+        teamService.leaveTeam(teamId, email);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

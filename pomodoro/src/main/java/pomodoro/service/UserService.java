@@ -20,7 +20,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<UserDto> getAll() {
         List<User> users = userRepository.findAll();
-        List<UserDto> usersDto = new ArrayList<UserDto>();
+        List<UserDto> usersDto = new ArrayList<>();
         users.stream().forEach(user -> {
             UserDto userDto = new UserDto();
             userDto.setEmail(user.getEmail());

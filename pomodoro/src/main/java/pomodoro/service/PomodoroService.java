@@ -20,7 +20,7 @@ public class PomodoroService {
     @Transactional(readOnly = true)
     public List<PomodoroDto> getAll() {
         List<Pomodoro> pomodoros = pomodoroRepository.findAll();
-        List<PomodoroDto> pomodorosDto = new ArrayList<PomodoroDto>();
+        List<PomodoroDto> pomodorosDto = new ArrayList<>();
         pomodoros.stream().forEach(pomodoro -> {
             PomodoroDto pomodoroDto = new PomodoroDto();
             pomodoroDto.setPomId(pomodoro.getPomId());

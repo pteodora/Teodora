@@ -1,5 +1,7 @@
 package pomodoro.dto;
 
+import pomodoro.entity.Pomodoro;
+
 public class PomodoroDto {
 
     private Long pomId;
@@ -10,6 +12,11 @@ public class PomodoroDto {
         this.pomId = pomId;
         this.name = name;
         this.email = email;
+    }
+
+    public PomodoroDto(Pomodoro pomodoro) {
+        this.pomId = pomodoro.getPomId();
+        this.name = pomodoro.getName();
     }
 
     public PomodoroDto() {

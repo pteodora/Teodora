@@ -1,0 +1,35 @@
+<h1>Details for "{{selectedTeam.name}}" team</h1>
+<hr color="BLUE">
+<hr color="BLUE">
+<div>
+  <div>
+    <p>Invite people to join your team</p>
+    <input type="text" ng-model="addedUser.email" placeholder="Enter email address..."> <input type="button"
+      value="Invite" ng-click="inviteUser(teamId,addedUser.email)">
+    <hr color="BLUE">
+    <hr color="BLUE">
+  </div>
+  <h3>Team details</h3>
+  <hr color="BLUE">
+  <div ng-repeat="user in selectedTeam.users">
+    <div>
+      <p>Name: {{user.firstName}} {{user.lastName}}</p>
+      <p>Email: {{user.email}}</p>
+    </div>
+    <div>
+      <h5>User's pomodoros</h5>
+      <hr>
+      <div ng-repeat="pomodoro in user.pomodoros">
+        <p >{{pomodoro.name}}</p>
+        <div id="time">Click to start pomodoro</div>
+        <div ng-if="'teodorapomana1@gmail.com'==user.email">
+          <input type="button" id="startButton" onclick="startButton();" value="Start"> <input type="button"
+            id="pauseButton" value="Pause">
+          <div id="divStart" style="visibility:hidden; display:inline;">User started a new pomodoro</div>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <hr color="BLUE">
+</div>

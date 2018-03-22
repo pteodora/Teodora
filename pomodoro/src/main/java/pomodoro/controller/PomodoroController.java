@@ -19,23 +19,23 @@ public class PomodoroController {
     @Autowired
     private PomodoroService pomodoroService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/getPomodoros", method = RequestMethod.GET)
     public ResponseEntity<?> getAllPomodoros() {
         return new ResponseEntity<>(pomodoroService.getAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{pomId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPomodoro/{pomId}", method = RequestMethod.GET)
     public ResponseEntity<?> getPomodoro(@PathVariable("pomId") Long pomId) {
         return new ResponseEntity<>(pomodoroService.getById(pomId), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/savePomodoro", method = RequestMethod.POST)
     public ResponseEntity<?> savePomodoro(@RequestBody PomodoroDto pomodoroDto) {
         pomodoroService.saveOrUpdate(pomodoroDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{pomId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deletePomodoro/{pomId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deletePomodoro(@PathVariable("pomId") Long pomId) {
         pomodoroService.delete(pomId);
         return new ResponseEntity<>(HttpStatus.OK);

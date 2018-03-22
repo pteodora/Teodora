@@ -22,7 +22,7 @@ public class TaskService {
     @Transactional(readOnly = true)
     public List<TaskDto> getAll() {
         List<Task> tasks = taskRepository.findAll();
-        List<TaskDto> tasksDto = new ArrayList<TaskDto>();
+        List<TaskDto> tasksDto = new ArrayList<>();
         tasks.stream().forEach(task -> {
             TaskDto taskDto = new TaskDto();
             taskDto.setTaskId(task.getTaskId());
